@@ -122,6 +122,10 @@
 
   /* 04 水面セクション */
   .plan-sec{ color:#eef4f3; }
+  .plan-sec .bg-img{
+    inset:-40px; width:calc(100% + 80px); height:calc(100% + 80px);
+    filter:url(#surface);
+  }
   .plan-sec .bg-overlay{ background:linear-gradient(rgba(8,32,38,.62),rgba(8,32,38,.72)); }
   .plan-sec .bg-content{ padding:130px 24px; }
   .plan-sec h2{ color:#fff; }
@@ -197,6 +201,7 @@
     border-top:1px solid rgba(168,198,194,.15); }
 
   @media(max-width:700px){
+    .plan-sec .bg-img{ inset:0; width:100%; height:100%; filter:none; }
     .chart-container{ height:240px; }
     .field-hero-txt{ padding:40px 24px; }
     .pillars{ grid-template-columns:1fr; }
@@ -214,6 +219,21 @@
 </style>
 </head>
 <body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="surface" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011"
+                      numOctaves="3" seed="5" result="n">
+          <animate attributeName="baseFrequency"
+                   values="0.004 0.011;0.0065 0.008;0.004 0.011"
+                   dur="18s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="22"
+                           xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
 
   <div class="hero bg-block">
     <img class="bg-img" src="top.jpg" alt="">
@@ -339,20 +359,19 @@
             </defs>
 
             <g filter="url(#wob)" fill="none" stroke="#a8c6c2">
-              <g class="spin2">
-                <ellipse cx="440" cy="340" rx="196" ry="153" stroke-width="1" stroke-opacity=".13"/>
-                <ellipse cx="440" cy="340" rx="243" ry="190" stroke-width="1" stroke-opacity=".13"/>
-                <ellipse cx="440" cy="340" rx="337" ry="262" stroke-width="1" stroke-opacity=".1"/>
-              </g>
               <g class="spin">
-                <ellipse cx="440" cy="340" rx="172" ry="134" stroke-width="1.6" stroke-opacity=".22"/>
-                <ellipse cx="440" cy="340" rx="219" ry="171" stroke-width="2.4" stroke-opacity=".34"/>
-                <ellipse cx="440" cy="340" rx="266" ry="208" stroke-width="1.6" stroke-opacity=".22"/>
-                <ellipse cx="440" cy="340" rx="313" ry="244" stroke-width="1.1" stroke-opacity=".14"/>
+                <ellipse cx="440" cy="340" rx="219" ry="171" stroke-width="1.4" stroke-opacity=".16"/>
+                <ellipse cx="440" cy="340" rx="290" ry="226" stroke-width="1" stroke-opacity=".1"/>
               </g>
-              <g class="sw"><circle cx="440" cy="340" r="88" stroke-width="1.8" stroke-opacity=".55"/></g>
-              <g class="sw s2"><circle cx="440" cy="340" r="88" stroke-width="1.8" stroke-opacity=".55"/></g>
-              <g class="sw s3"><circle cx="440" cy="340" r="88" stroke-width="1.8" stroke-opacity=".55"/></g>
+              <g class="spin2">
+                <ellipse cx="440" cy="340" rx="255" ry="199" stroke-width="1" stroke-opacity=".1"/>
+              </g>
+            </g>
+
+            <g fill="none" stroke="#cfe4e0">
+              <g class="sw"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
+              <g class="sw s2"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
+              <g class="sw s3"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
             </g>
 
             <circle cx="440" cy="340" r="88" fill="#0f4c53" fill-opacity=".92"
