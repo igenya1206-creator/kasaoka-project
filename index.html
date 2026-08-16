@@ -19,21 +19,29 @@
   .en{ font-family:"Georgia",serif; letter-spacing:.35em; font-size:.72em;
     color:var(--teal); text-transform:uppercase; display:block; margin-bottom:14px; }
 
+  /* 共通:背景画像ブロック */
   .bg-block{ position:relative; overflow:hidden; }
   .bg-block .bg-img{
     position:absolute; inset:0; width:100%; height:100%;
     object-fit:cover; object-position:center; z-index:0;
   }
-  .bg-block .bg-overlay{ position:absolute; inset:0; z-index:1; }
-  .bg-block .bg-content{ position:relative; z-index:2; }
+  .bg-block .bg-overlay{
+    position:absolute; inset:0; z-index:1;
+  }
+  .bg-block .bg-content{
+    position:relative; z-index:2;
+  }
 
+  /* ヒーロー */
   .hero{
     height:100vh; min-height:600px;
     display:flex; flex-direction:column;
     justify-content:center; align-items:center; text-align:center;
     color:#fff; padding:0 24px;
   }
-  .hero .bg-overlay{ background:linear-gradient(rgba(6,30,36,.45),rgba(6,30,36,.7)); }
+  .hero .bg-overlay{
+    background:linear-gradient(rgba(6,30,36,.45),rgba(6,30,36,.7));
+  }
   .hero .bg-content{
     display:flex; flex-direction:column;
     align-items:center; text-align:center; width:100%;
@@ -58,13 +66,18 @@
   .reveal{ opacity:0; transform:translateY(50px); transition:all 1.2s cubic-bezier(.2,.8,.2,1); }
   .reveal.on{ opacity:1; transform:none; }
 
+  /* 写真バンド */
   .band{ height:70vh; min-height:420px; }
   .band .cap{ position:absolute; bottom:28px; right:28px; color:#fff;
     font-size:.8em; letter-spacing:.1em; opacity:.7; z-index:2; }
 
-  .band-overlay{ background:linear-gradient(rgba(6,30,36,.15),rgba(6,30,36,.55)); }
+  /* 干潟バンド内テキスト演出 */
+  .band-overlay{
+    background:linear-gradient(rgba(6,30,36,.15),rgba(6,30,36,.55));
+  }
   .band-content{
-    position:relative; z-index:2; height:100%;
+    position:relative; z-index:2;
+    height:100%;
     display:flex; flex-direction:column;
     justify-content:center; align-items:center;
     text-align:center; color:#fff; padding:0 24px;
@@ -80,11 +93,15 @@
     to{ opacity:1; transform:none; }
   }
 
+  /* 動機 */
   .motive{ color:#eef4f3; }
-  .motive .bg-overlay{ background:linear-gradient(rgba(8,32,38,.82),rgba(8,32,38,.9)); }
+  .motive .bg-overlay{
+    background:linear-gradient(rgba(8,32,38,.82),rgba(8,32,38,.9));
+  }
   .motive .bg-content{ padding:130px 24px; }
   .motive h2{ color:#fff; }
 
+  /* 数字カード */
   .stats{ display:flex; flex-wrap:wrap; gap:0; margin-top:48px;
     border-top:1px solid rgba(255,255,255,.2); }
   .stat{ flex:1; min-width:200px; padding:34px 20px; text-align:center;
@@ -96,12 +113,14 @@
   .stat .cap{ margin-top:16px; font-size:.85em; letter-spacing:.08em;
     color:#bcd; line-height:1.7; }
 
+  /* グラフ */
   .chart-wrap{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15);
     border-radius:12px; padding:32px 24px; margin-top:56px; }
   .chart-wrap h3{ color:#cfe4e0; font-size:1em; letter-spacing:.2em; font-weight:400;
     margin-bottom:24px; text-align:center; }
   .chart-container{ position:relative; height:320px; }
 
+  /* 3本柱 */
   .pillars{ display:grid; grid-template-columns:repeat(3,1fr);
     gap:20px; margin-top:20px; }
   .pillar{ position:relative; height:360px; overflow:hidden; border-radius:8px; }
@@ -118,15 +137,24 @@
   .cycle{ margin-top:56px; }
   .cycle-svg{ width:100%; height:auto; display:block;
     font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif; }
-  .cycle-cards{ display:none; }
+
+  /* 04 カード */
+  .plan-cards{ display:grid; grid-template-columns:repeat(2,1fr);
+    gap:16px; margin-top:56px; }
+  .cc{ background:rgba(255,255,255,.07); border:1px solid rgba(168,198,194,.28);
+    border-radius:8px; padding:26px 28px; transition:background .4s; }
+  .cc:hover{ background:rgba(255,255,255,.11); }
+  .cc-no{ font-family:"Georgia",serif; color:#7fa8a4;
+    font-size:.85em; letter-spacing:.2em; display:block; }
+  .cc-ttl{ font-size:1.3em; color:#fff;
+    letter-spacing:.1em; display:block; margin:6px 0 8px; }
+  .cc-desc{ font-size:.92em; color:#a8c6c2; line-height:1.9; }
 
   /* 04 水面セクション */
   .plan-sec{ color:#eef4f3; }
-  .plan-sec .bg-img{
-    inset:-40px; width:calc(100% + 80px); height:calc(100% + 80px);
-    filter:url(#surface);
+  .plan-sec .bg-overlay{
+    background:linear-gradient(rgba(8,32,38,.62),rgba(8,32,38,.72));
   }
-  .plan-sec .bg-overlay{ background:linear-gradient(rgba(8,32,38,.62),rgba(8,32,38,.72)); }
   .plan-sec .bg-content{ padding:130px 24px; }
   .plan-sec h2{ color:#fff; }
   .plan-sec p{ color:#cde; }
@@ -143,6 +171,13 @@
   .s-hub{ fill:#fff; font-size:23px; }
   .s-hubs{ fill:var(--accent); font-size:12px; font-family:"Georgia",serif; letter-spacing:.24em; }
   .s-node{ fill:#fdfdfc; stroke:var(--teal); stroke-opacity:.35; stroke-width:1; }
+  .cycle-svg-m{ display:none; width:100%; height:auto;
+    font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif; }
+  .m-ttl{ fill:var(--deep); font-size:28px; }
+  .m-dsc{ fill:#5e7a79; font-size:17px; }
+  .m-num{ fill:var(--teal); font-size:17px; font-family:"Georgia",serif; letter-spacing:.22em; }
+  .m-hub{ fill:#fff; font-size:26px; }
+  .m-hubs{ fill:var(--accent); font-size:13px; font-family:"Georgia",serif; letter-spacing:.2em; }
 
   /* アニメーション */
   @keyframes swell{ 0%{ transform:scale(1); opacity:.55; } 100%{ transform:scale(3.6); opacity:0; } }
@@ -159,6 +194,8 @@
       transform-origin:440px 340px; transform-box:view-box; }
     .reveal.on .sweep{ animation:turn 11s linear infinite;
       transform-origin:440px 340px; transform-box:view-box; }
+    .reveal.on .sweep-m{ animation:turn 11s linear infinite;
+      transform-origin:300px 415px; transform-box:view-box; }
     .reveal.on .bl{ animation:blip 11s linear infinite; }
     .reveal.on .b2{ animation-delay:2.75s; }
     .reveal.on .b3{ animation-delay:5.5s; }
@@ -191,7 +228,10 @@
   .field-lead{ font-size:1.05em; line-height:2.3; color:#cde;
     border-left:3px solid var(--accent); padding-left:24px; margin-bottom:60px; }
 
-  .closing .bg-overlay{ background:linear-gradient(rgba(8,32,38,.7),rgba(8,32,38,.8)); }
+  /* クロージング */
+  .closing .bg-overlay{
+    background:linear-gradient(rgba(8,32,38,.7),rgba(8,32,38,.8));
+  }
   .closing .bg-content{ padding:160px 24px; }
   .quote{ text-align:center; font-size:clamp(1.3em,3vw,2em); font-weight:300;
     line-height:1.9; letter-spacing:.1em; color:#fff; max-width:800px; margin:0 auto; }
@@ -201,40 +241,20 @@
     border-top:1px solid rgba(168,198,194,.15); }
 
   @media(max-width:700px){
-    .plan-sec .bg-img{ inset:0; width:100%; height:100%; filter:none; }
     .chart-container{ height:240px; }
     .field-hero-txt{ padding:40px 24px; }
     .pillars{ grid-template-columns:1fr; }
     .stat + .stat{ border-left:none; }
+    .plan-cards{ grid-template-columns:1fr; gap:14px; margin-top:40px; }
+    .cc{ padding:20px 22px; }
     .cycle-svg{ display:none; }
-    .cycle-cards{ display:grid; gap:14px; margin-top:40px; }
-    .cc{ background:#fff; border:1px solid rgba(15,76,83,.14);
-      border-radius:8px; padding:20px 22px; }
-    .cc-no{ font-family:"Georgia",serif; color:#8fb3ae;
-      font-size:.85em; letter-spacing:.2em; display:block; }
-    .cc-ttl{ font-size:1.25em; color:var(--deep);
-      letter-spacing:.1em; display:block; margin:4px 0 6px; }
-    .cc-desc{ font-size:.9em; color:#5a7375; line-height:1.8; }
+    .cycle-svg-m{ display:block; }
   }
 </style>
 </head>
 <body>
 
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <filter id="surface" x="0%" y="0%" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011"
-                      numOctaves="3" seed="5" result="n">
-          <animate attributeName="baseFrequency"
-                   values="0.004 0.011;0.0065 0.008;0.004 0.011"
-                   dur="18s" repeatCount="indefinite"/>
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="22"
-                           xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
-
+  <!-- ヒーロー -->
   <div class="hero bg-block">
     <img class="bg-img" src="top.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -248,6 +268,7 @@
     <div class="scroll">SCROLL</div>
   </div>
 
+  <!-- 動機 -->
   <div class="motive bg-block">
     <img class="bg-img" src="loss.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -281,6 +302,7 @@
     </div>
   </div>
 
+  <!-- 写真バンド1 -->
   <div class="band bg-block reveal">
     <img class="bg-img" src="higata.jpg" alt="笠岡湾・干潟">
     <div class="bg-overlay band-overlay"></div>
@@ -291,6 +313,7 @@
     <span class="cap">笠岡湾・干潟</span>
   </div>
 
+  <!-- 目的 -->
   <section>
     <div class="wrap reveal">
       <span class="en">02  The Purpose</span>
@@ -299,6 +322,7 @@
     </div>
   </section>
 
+  <!-- 写真バンド2 -->
   <div class="band bg-block reveal">
     <img class="bg-img" src="sea.jpg" alt="海中・藻場">
     <div class="bg-overlay band-overlay"></div>
@@ -309,6 +333,7 @@
     <span class="cap">海中・藻場</span>
   </div>
 
+  <!-- 目指すもの -->
   <section>
     <div class="wrap reveal" style="text-align:center;">
       <span class="en">03  The Vision</span>
@@ -333,6 +358,7 @@
     </div>
   </section>
 
+  <!-- 計画 -->
   <div class="plan-sec bg-block">
     <img class="bg-img" src="water.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -343,66 +369,7 @@
         <p>行政・企業・市民・研究機関が協働する。「カブトガニ環境応援団」を通じて寄附・協賛を集め、その資金を海洋環境改善事業へ投じる。研究機関が効果を科学的に検証し、成果を発信する。</p>
 
         <div class="cycle">
-          <svg class="cycle-svg" viewBox="0 0 880 690" role="img"
-               aria-label="行政・企業・市民団体・研究機関が水流でつながり循環する図">
-            <defs>
-              <filter id="wob" x="-25%" y="-25%" width="150%" height="150%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.009 0.014"
-                              numOctaves="3" seed="7" result="t">
-                  <animate attributeName="baseFrequency"
-                           values="0.009 0.014;0.013 0.010;0.009 0.014"
-                           dur="15s" repeatCount="indefinite"/>
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="t" scale="24"
-                                   xChannelSelector="R" yChannelSelector="G"/>
-              </filter>
-            </defs>
-
-            <g filter="url(#wob)" fill="none" stroke="#a8c6c2">
-              <g class="spin">
-                <ellipse cx="440" cy="340" rx="219" ry="171" stroke-width="1.4" stroke-opacity=".16"/>
-                <ellipse cx="440" cy="340" rx="290" ry="226" stroke-width="1" stroke-opacity=".1"/>
-              </g>
-              <g class="spin2">
-                <ellipse cx="440" cy="340" rx="255" ry="199" stroke-width="1" stroke-opacity=".1"/>
-              </g>
-            </g>
-
-            <g fill="none" stroke="#cfe4e0">
-              <g class="sw"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
-              <g class="sw s2"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
-              <g class="sw s3"><circle cx="440" cy="340" r="88" stroke-width="2.2" stroke-opacity=".7"/></g>
-            </g>
-
-            <circle cx="440" cy="340" r="88" fill="#0f4c53" fill-opacity=".92"
-                    stroke="#a8c6c2" stroke-opacity=".45"/>
-            <text class="w-hub" x="440" y="332" text-anchor="middle">カブトガニ</text>
-            <text class="w-hub" x="440" y="364" text-anchor="middle">環境応援団</text>
-
-            <circle class="w-node" cx="440" cy="115" r="95"/>
-            <text class="w-num" x="440" y="74"  text-anchor="middle">Ⅰ</text>
-            <text class="w-ttl" x="440" y="112" text-anchor="middle">行政</text>
-            <text class="w-dsc" x="440" y="145" text-anchor="middle">旗振り・調整</text>
-            <text class="w-dsc" x="440" y="164" text-anchor="middle">財源管理</text>
-
-            <circle class="w-node" cx="730" cy="340" r="95"/>
-            <text class="w-num" x="730" y="299" text-anchor="middle">Ⅱ</text>
-            <text class="w-ttl" x="730" y="337" text-anchor="middle">企業</text>
-            <text class="w-dsc" x="730" y="370" text-anchor="middle">資金・技術の提供</text>
-
-            <circle class="w-node" cx="440" cy="565" r="95"/>
-            <text class="w-num" x="440" y="524" text-anchor="middle">Ⅲ</text>
-            <text class="w-ttl" x="440" y="562" text-anchor="middle">市民・団体</text>
-            <text class="w-dsc" x="440" y="595" text-anchor="middle">参加・普及啓発</text>
-
-            <circle class="w-node" cx="150" cy="340" r="95"/>
-            <text class="w-num" x="150" y="299" text-anchor="middle">Ⅳ</text>
-            <text class="w-ttl" x="150" y="337" text-anchor="middle">研究機関</text>
-            <text class="w-dsc" x="150" y="370" text-anchor="middle">科学的検証</text>
-            <text class="w-dsc" x="150" y="389" text-anchor="middle">成果の発信</text>
-          </svg>
-
-          <div class="cycle-cards">
+          <div class="plan-cards">
             <div class="cc"><span class="cc-no">Ⅰ</span><span class="cc-ttl">行政</span><span class="cc-desc">旗振り・調整・財源管理</span></div>
             <div class="cc"><span class="cc-no">Ⅱ</span><span class="cc-ttl">企業</span><span class="cc-desc">資金・技術の提供</span></div>
             <div class="cc"><span class="cc-no">Ⅲ</span><span class="cc-ttl">市民・団体</span><span class="cc-desc">参加・普及啓発</span></div>
@@ -413,6 +380,7 @@
     </div>
   </div>
 
+  <!-- 具体 -->
   <section>
     <div class="wrap reveal">
       <span class="en">05  The Action</span>
@@ -477,14 +445,61 @@
             <circle cx="440" cy="752" r="3" fill="#0f4c53" stroke="none" fill-opacity=".45"/>
           </g>
         </svg>
-
-        <div class="cycle-cards">
-          <div class="cc"><span class="cc-no">01</span><span class="cc-ttl">調べる</span><span class="cc-desc">底質・ベントス・eDNA調査</span></div>
-          <div class="cc"><span class="cc-no">02</span><span class="cc-ttl">守る</span><span class="cc-desc">自然共生サイトの登録</span></div>
-          <div class="cc"><span class="cc-no">03</span><span class="cc-ttl">再生する</span><span class="cc-desc">干潟改善・藻場造成・食圧軽減・ブルーカーボン</span></div>
-          <div class="cc"><span class="cc-no">04</span><span class="cc-ttl">拠点をつくる</span><span class="cc-desc">白石島研究フィールド</span></div>
-        </div>
       </div>
+
+
+        <svg class="cycle-svg-m" viewBox="0 0 600 830" role="img"
+             aria-label="目盛りを刻んだ円盤上を走査線がめぐり、調べる・守る・再生する・拠点をつくるの四工程が配置された図">
+          <defs>
+            <linearGradient id="sweepGm" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#0f4c53" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#0f4c53" stop-opacity=".16"/>
+            </linearGradient>
+          </defs>
+
+          <g stroke="#0f4c53" fill="none">
+            <path d="M300.0,43.0L300.0,19.0 M431.0,92.8L439.0,72.1 M526.9,229.0L540.8,217.0 M562.0,415.0L578.0,415.0 M526.9,601.0L540.8,613.0 M431.0,737.2L439.0,757.9 M300.0,787.0L300.0,811.0 M169.0,737.2L161.0,757.9 M73.1,601.0L59.2,613.0 M38.0,415.0L22.0,415.0 M73.1,229.0L59.2,217.0 M169.0,92.8L161.0,72.1" stroke-width="1.4" stroke-opacity=".4"/>
+            <path d="M344.1,59.6L348.3,25.0 M386.9,75.9L395.1,42.9 M463.4,138.6L478.7,111.6 M494.7,183.1L513.0,160.5 M538.8,291.6L561.2,279.6 M550.3,352.3L573.8,346.2 M550.3,477.7L573.8,483.8 M538.8,538.4L561.2,550.4 M494.7,646.9L513.0,669.5 M463.4,691.4L478.7,718.4 M386.9,754.1L395.1,787.1 M344.1,770.4L348.3,805.0 M255.9,770.4L251.7,805.0 M213.1,754.1L204.9,787.1 M136.6,691.4L121.3,718.4 M105.3,646.9L87.0,669.5 M61.2,538.4L38.8,550.4 M49.7,477.7L26.2,483.8 M49.7,352.3L26.2,346.2 M61.2,291.6L38.8,279.6 M105.3,183.1L87.0,160.5 M136.6,138.6L121.3,111.6 M213.1,75.9L204.9,42.9 M255.9,59.6L251.7,25.0" stroke-width="1" stroke-opacity=".2"/>
+            <ellipse cx="300" cy="415" rx="262" ry="372" stroke-width="1" stroke-opacity=".22"/>
+            <ellipse cx="300" cy="415" rx="200" ry="300" stroke-width="1" stroke-opacity=".16" stroke-dasharray="2 6"/>
+            <ellipse cx="300" cy="415" rx="140" ry="210" stroke-width="1" stroke-opacity=".16" stroke-dasharray="2 6"/>
+            <line x1="38" y1="415" x2="562" y2="415" stroke-width=".9" stroke-opacity=".14"/>
+            <line x1="300" y1="43" x2="300" y2="787" stroke-width=".9" stroke-opacity=".14"/>
+          </g>
+
+          <g class="sweep-m">
+            <path d="M300,415 L300,43 A262,372 0 0,1 431.0,92.8 Z" fill="url(#sweepGm)"/>
+            <line x1="300" y1="415" x2="300" y2="43" stroke="#0f4c53" stroke-width="1.6" stroke-opacity=".45"/>
+          </g>
+
+          <circle cx="300" cy="415" r="70" fill="#0a2a33"/>
+          <text class="m-hub"  x="300" y="412" text-anchor="middle">海の再生</text>
+          <text class="m-hubs" x="300" y="436" text-anchor="middle">METHOD</text>
+
+          <circle class="s-node bl" cx="300" cy="115" r="95"/>
+          <text class="m-num" x="300" y="80"  text-anchor="middle">01</text>
+          <text class="m-ttl" x="300" y="113" text-anchor="middle">調べる</text>
+          <text class="m-dsc" x="300" y="146" text-anchor="middle">底質・ベントス</text>
+          <text class="m-dsc" x="300" y="168" text-anchor="middle">eDNA調査</text>
+
+          <circle class="s-node bl b2" cx="500" cy="415" r="95"/>
+          <text class="m-num" x="500" y="380" text-anchor="middle">02</text>
+          <text class="m-ttl" x="500" y="413" text-anchor="middle">守る</text>
+          <text class="m-dsc" x="500" y="446" text-anchor="middle">自然共生サイト</text>
+          <text class="m-dsc" x="500" y="468" text-anchor="middle">の登録</text>
+
+          <circle class="s-node bl b3" cx="300" cy="715" r="95"/>
+          <text class="m-num" x="300" y="680" text-anchor="middle">03</text>
+          <text class="m-ttl" x="300" y="713" text-anchor="middle">再生する</text>
+          <text class="m-dsc" x="300" y="746" text-anchor="middle">干潟改善・藻場造成</text>
+          <text class="m-dsc" x="300" y="768" text-anchor="middle">食圧軽減</text>
+
+          <circle class="s-node bl b4" cx="100" cy="415" r="95"/>
+          <text class="m-num" x="100" y="380" text-anchor="middle">04</text>
+          <text class="m-ttl" x="100" y="413" text-anchor="middle">拠点をつくる</text>
+          <text class="m-dsc" x="100" y="446" text-anchor="middle">白石島</text>
+          <text class="m-dsc" x="100" y="468" text-anchor="middle">研究フィールド</text>
+        </svg>
 
       <div class="lead-down">
         <p>その拠点が、白石島。</p>
@@ -492,6 +507,7 @@
     </div>
   </section>
 
+  <!-- 白石島研究フィールド構想 -->
   <div class="field-section reveal">
     <div class="field-hero bg-block">
       <img class="bg-img" src="shiraishi.jpg" alt="白石島">
@@ -515,6 +531,7 @@
     </div>
   </div>
 
+  <!-- クロージング -->
   <div class="closing bg-block">
     <img class="bg-img" src="closing.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -533,6 +550,7 @@
   </footer>
 
 <script>
+/* スクロール出現 ＋ 数字カウントアップ */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -557,6 +575,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.25 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+/* グラフ描画 */
 function drawChart() {
   const ctx = document.getElementById('suiageChart').getContext('2d');
   const gradA = ctx.createLinearGradient(0, 0, 0, 320);
