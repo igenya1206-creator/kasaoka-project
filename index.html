@@ -19,7 +19,6 @@
   .en{ font-family:"Georgia",serif; letter-spacing:.35em; font-size:.72em;
     color:var(--teal); text-transform:uppercase; display:block; margin-bottom:14px; }
 
-  /* 共通：背景画像ブロック */
   .bg-block{ position:relative; overflow:hidden; }
   .bg-block .bg-img{
     position:absolute; inset:0; width:100%; height:100%;
@@ -32,7 +31,6 @@
     position:relative; z-index:2;
   }
 
-  /* ヒーロー */
   .hero{
     height:100vh; min-height:600px;
     display:flex; flex-direction:column;
@@ -66,12 +64,31 @@
   .reveal{ opacity:0; transform:translateY(50px); transition:all 1.2s cubic-bezier(.2,.8,.2,1); }
   .reveal.on{ opacity:1; transform:none; }
 
-  /* 写真バンド */
   .band{ height:70vh; min-height:420px; }
   .band .cap{ position:absolute; bottom:28px; right:28px; color:#fff;
     font-size:.8em; letter-spacing:.1em; opacity:.7; z-index:2; }
 
-  /* 動機 */
+  .band-overlay{
+    background:linear-gradient(rgba(6,30,36,.15),rgba(6,30,36,.55));
+  }
+  .band-content{
+    position:relative; z-index:2;
+    height:100%;
+    display:flex; flex-direction:column;
+    justify-content:center; align-items:center;
+    text-align:center; color:#fff; padding:0 24px;
+  }
+  .band-en{ color:#cfe4e0; opacity:0; animation:bandFadeUp 1.4s ease forwards .3s; }
+  .band-text{
+    font-size:clamp(1.3em,3.2vw,2.1em); font-weight:400; letter-spacing:.12em;
+    line-height:1.9; text-shadow:0 4px 24px rgba(0,0,0,.4);
+    opacity:0; animation:bandFadeUp 1.4s ease forwards .6s;
+  }
+  @keyframes bandFadeUp{
+    from{ opacity:0; transform:translateY(28px); }
+    to{ opacity:1; transform:none; }
+  }
+
   .motive{ color:#eef4f3; }
   .motive .bg-overlay{
     background:linear-gradient(rgba(8,32,38,.82),rgba(8,32,38,.9));
@@ -79,7 +96,6 @@
   .motive .bg-content{ padding:130px 24px; }
   .motive h2{ color:#fff; }
 
-  /* 数字カード */
   .stats{ display:flex; flex-wrap:wrap; gap:0; margin-top:48px;
     border-top:1px solid rgba(255,255,255,.2); }
   .stat{ flex:1; min-width:200px; padding:34px 20px; text-align:center;
@@ -91,14 +107,12 @@
   .stat .cap{ margin-top:16px; font-size:.85em; letter-spacing:.08em;
     color:#bcd; line-height:1.7; }
 
-  /* グラフ */
   .chart-wrap{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15);
     border-radius:12px; padding:32px 24px; margin-top:56px; }
   .chart-wrap h3{ color:#cfe4e0; font-size:1em; letter-spacing:.2em; font-weight:400;
     margin-bottom:24px; text-align:center; }
   .chart-container{ position:relative; height:320px; }
 
-  /* 3本柱 */
   .pillars{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:2px; margin-top:20px; background:var(--teal); }
   .pillar{ position:relative; height:360px; overflow:hidden; }
@@ -110,7 +124,6 @@
   .pillar h3{ font-size:1.5em; font-weight:500; letter-spacing:.15em; margin-bottom:10px; }
   .pillar p{ font-size:.95em; opacity:.92; }
 
-  /* フロー */
   .flow{ margin-top:40px; }
   .flow-item{ display:flex; align-items:baseline; gap:24px; padding:26px 0;
     border-bottom:1px solid rgba(15,76,83,.18); }
@@ -119,7 +132,6 @@
   .flow-item .ttl{ font-size:1.25em; color:var(--deep); min-width:180px; font-weight:500; }
   .flow-item .desc{ color:#456; font-size:.98em; }
 
-  /* 白石島セクション */
   .field-section{ padding:0; overflow:hidden; }
   .field-hero{ height:75vh; min-height:480px; }
   .field-hero .bg-overlay{
@@ -162,7 +174,6 @@
     text-decoration:none; transition:color .3s; width:fit-content; }
   .org-link:hover{ color:#fff; }
 
-  /* クロージング */
   .closing{ }
   .closing .bg-overlay{
     background:linear-gradient(rgba(8,32,38,.7),rgba(8,32,38,.8));
@@ -185,7 +196,6 @@
 </head>
 <body>
 
-  <!-- ヒーロー -->
   <div class="hero bg-block">
     <img class="bg-img" src="top.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -199,7 +209,6 @@
     <div class="scroll">SCROLL</div>
   </div>
 
-  <!-- 動機 -->
   <div class="motive bg-block">
     <img class="bg-img" src="loss.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -233,13 +242,16 @@
     </div>
   </div>
 
-  <!-- 写真バンド1 -->
   <div class="band bg-block reveal">
     <img class="bg-img" src="higata.jpg" alt="笠岡湾・干潟">
+    <div class="bg-overlay band-overlay"></div>
+    <div class="band-content">
+      <span class="en band-en">Protect the Flat</span>
+      <p class="band-text">この干潟を、次の世代に残す。<br>笠岡湾、自然共生サイト登録へ</p>
+    </div>
     <span class="cap">笠岡湾・干潟</span>
   </div>
 
-  <!-- 目的 -->
   <section>
     <div class="wrap reveal">
       <span class="en">02  The Purpose</span>
@@ -248,13 +260,11 @@
     </div>
   </section>
 
-  <!-- 写真バンド2 -->
   <div class="band bg-block reveal">
     <img class="bg-img" src="sea.jpg" alt="海中・藻場">
     <span class="cap">海中・藻場</span>
   </div>
 
-  <!-- 目指すもの -->
   <section>
     <div class="wrap reveal" style="text-align:center;">
       <span class="en">03  The Vision</span>
@@ -279,7 +289,6 @@
     </div>
   </section>
 
-  <!-- 計画 -->
   <section style="background:#eef2f0;">
     <div class="wrap reveal">
       <span class="en">04  The Plan</span>
@@ -294,7 +303,6 @@
     </div>
   </section>
 
-  <!-- 具体 -->
   <section>
     <div class="wrap reveal">
       <span class="en">05  The Action</span>
@@ -308,7 +316,6 @@
     </div>
   </section>
 
-  <!-- 白石島研究フィールド構想 -->
   <div class="field-section reveal">
     <div class="field-hero bg-block">
       <img class="bg-img" src="shiraishi.jpg" alt="白石島">
@@ -347,7 +354,6 @@
     </div>
   </div>
 
-  <!-- クロージング -->
   <div class="closing bg-block">
     <img class="bg-img" src="closing.jpg" alt="">
     <div class="bg-overlay"></div>
@@ -366,7 +372,6 @@
   </footer>
 
 <script>
-/* スクロール出現 ＋ 数字カウントアップ */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -390,7 +395,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.25 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* グラフ描画 */
 function drawChart() {
   const ctx = document.getElementById('suiageChart').getContext('2d');
   const gradA = ctx.createLinearGradient(0, 0, 0, 320);
