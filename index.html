@@ -112,6 +112,8 @@
   .stat .unit{ font-size:.4em; margin-left:4px; color:#cfe4e0; }
   .stat .cap{ margin-top:16px; font-size:.85em; letter-spacing:.08em;
     color:#bcd; line-height:1.7; }
+  .stat-note{ margin-top:20px; font-size:.78em; line-height:1.9;
+    color:#8fa9ad; letter-spacing:.04em; }
 
   /* グラフ */
   .chart-wrap{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15);
@@ -133,24 +135,35 @@
   .pillar p{ position:absolute; bottom:24px; left:24px; right:24px;
     font-size:.95em; opacity:.92; text-shadow:0 2px 10px rgba(0,0,0,.5); }
 
-  /* 循環図 共通 */
+  /* 図 共通 */
   .cycle{ margin-top:56px; }
   .cycle-svg{ width:100%; height:auto; display:block;
     font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif; }
 
-  /* 04 カード */
+  /* 応援団カード */
   .plan-cards{ display:grid; grid-template-columns:repeat(2,1fr);
     gap:16px; margin-top:56px; }
-  .cc{ background:rgba(255,255,255,.07); border:1px solid rgba(168,198,194,.28);
-    border-radius:8px; padding:26px 28px; transition:background .4s; }
-  .cc:hover{ background:rgba(255,255,255,.11); }
+  .cc{ background:rgba(255,255,255,.86); border:1px solid rgba(255,255,255,.45);
+    border-radius:8px; padding:26px 28px; transition:background .4s;
+    backdrop-filter:blur(2px); }
+  .cc:hover{ background:rgba(255,255,255,.95); }
   .cc-no{ font-family:"Georgia",serif; color:#7fa8a4;
     font-size:.85em; letter-spacing:.2em; display:block; }
-  .cc-ttl{ font-size:1.3em; color:#fff;
+  .cc-ttl{ font-size:1.3em; color:var(--deep);
     letter-spacing:.1em; display:block; margin:6px 0 8px; }
-  .cc-desc{ font-size:.92em; color:#a8c6c2; line-height:1.9; }
+  .cc-desc{ font-size:.92em; color:#4c6a6c; line-height:1.9; }
 
-  /* 04 水面セクション */
+  /* 応援団リンクボタン */
+  .join-wrap{ text-align:center; }
+  .join-btn{ display:inline-block; margin-top:48px;
+    padding:19px 46px; border:1px solid rgba(168,198,194,.6);
+    color:#fff; text-decoration:none;
+    font-size:1em; letter-spacing:.16em; line-height:1.6;
+    transition:background .4s, border-color .4s; }
+  .join-btn:hover{ background:rgba(168,198,194,.16); border-color:#a8c6c2; }
+  .join-btn .arw{ margin-left:14px; }
+
+  /* 水面セクション */
   .plan-sec{ color:#eef4f3; }
   .plan-sec .bg-overlay{
     background:linear-gradient(rgba(8,32,38,.62),rgba(8,32,38,.72));
@@ -158,13 +171,8 @@
   .plan-sec .bg-content{ padding:130px 24px; }
   .plan-sec h2{ color:#fff; }
   .plan-sec p{ color:#cde; }
-  .w-ttl{ fill:#fff; font-size:25px; }
-  .w-dsc{ fill:#a8c6c2; font-size:13px; }
-  .w-num{ fill:#7fa8a4; font-size:15px; font-family:"Georgia",serif; letter-spacing:.15em; }
-  .w-hub{ fill:#fff; font-size:23px; }
-  .w-node{ fill:#fff; fill-opacity:.07; stroke:#a8c6c2; stroke-opacity:.4; }
 
-  /* 05 計器セクション */
+  /* 計器図 */
   .s-ttl{ fill:var(--deep); font-size:25px; }
   .s-dsc{ fill:#5e7a79; font-size:13px; }
   .s-num{ fill:var(--teal); font-size:14px; font-family:"Georgia",serif; letter-spacing:.22em; }
@@ -180,18 +188,9 @@
   .m-hubs{ fill:var(--accent); font-size:13px; font-family:"Georgia",serif; letter-spacing:.2em; }
 
   /* アニメーション */
-  @keyframes swell{ 0%{ transform:scale(1); opacity:.55; } 100%{ transform:scale(3.6); opacity:0; } }
   @keyframes turn{ to{ transform:rotate(360deg); } }
   @keyframes blip{ 0%,100%{ opacity:.3; } 50%{ opacity:.75; } }
   @media (prefers-reduced-motion: no-preference){
-    .reveal.on .sw{ animation:swell 9s cubic-bezier(.25,.6,.4,1) infinite;
-      transform-origin:440px 340px; transform-box:view-box; }
-    .reveal.on .s2{ animation-delay:3s; }
-    .reveal.on .s3{ animation-delay:6s; }
-    .reveal.on .spin{ animation:turn 100s linear infinite;
-      transform-origin:440px 340px; transform-box:view-box; }
-    .reveal.on .spin2{ animation:turn 150s linear infinite reverse;
-      transform-origin:440px 340px; transform-box:view-box; }
     .reveal.on .sweep{ animation:turn 11s linear infinite;
       transform-origin:440px 340px; transform-box:view-box; }
     .reveal.on .sweep-m{ animation:turn 11s linear infinite;
@@ -247,6 +246,7 @@
     .stat + .stat{ border-left:none; }
     .plan-cards{ grid-template-columns:1fr; gap:14px; margin-top:40px; }
     .cc{ padding:20px 22px; }
+    .join-btn{ padding:16px 28px; font-size:.92em; letter-spacing:.1em; }
     .cycle-svg{ display:none; }
     .cycle-svg-m{ display:block; }
   }
@@ -274,23 +274,24 @@
     <div class="bg-overlay"></div>
     <div class="bg-content">
       <div class="wrap reveal">
-        <span class="en">01  The Reality</span>
+        <span class="en">The Reality</span>
         <h2>笠岡の海が、静かに失われている</h2>
-        <p>かつて豊かだった笠岡の海は、大きく様変わりした。海面漁業の水揚げは、平成19年の7億4,400万円から、令和6年には2億7,100万円へと激減。タコ、シャコ、カレイ、ナマコ当たり前に獲れていた魚が、静かに姿を消しつつある。</p>
+        <p>かつて豊かだった笠岡の海は、大きく様変わりした。海面漁業の水揚げは、平成19年の7億4,400万円から、令和6年には2億7,100万円へ。年ごとに増減を繰り返しながらも、長期では落ち込み続けている。タコ、シャコ、カレイ、ナマコ。当たり前に獲れていた魚が、静かに姿を消しつつある。</p>
         <div class="stats">
           <div class="stat">
-            <div class="big" data-count="4.7">0<span class="unit">億円</span></div>
-            <div class="cap">年間の損失<br>ピーク比で失われ続ける水揚げ</div>
+            <div class="big" data-count="64">0<span class="unit">％</span></div>
+            <div class="cap">ピーク時から失われた<br>水揚げの割合</div>
           </div>
           <div class="stat">
-            <div class="big" data-count="40">0<span class="unit">億円</span></div>
-            <div class="cap">この10年で失った<br>水揚げの累計</div>
+            <div class="big" data-count="32.8">0<span class="unit">億円</span></div>
+            <div class="cap">この10年で失った<br>水揚げの累計（ピーク比）</div>
           </div>
           <div class="stat">
-            <div class="big" data-count="50">0<span class="unit">億円</span></div>
+            <div class="big" data-count="58.5">0<span class="unit">億円</span></div>
             <div class="cap">何もしなければ<br>次の10年で失う額</div>
           </div>
         </div>
+        <p class="stat-note">※ ピークは平成19年（7億4,400万円）。次の10年の試算は、過去18年の傾向がこのまま続いた場合の推計値。</p>
         <div class="chart-wrap reveal" id="chartTrigger">
           <h3>海面漁業　水揚げ金額・漁獲量の推移</h3>
           <div class="chart-container">
@@ -316,7 +317,7 @@
   <!-- 目的 -->
   <section>
     <div class="wrap reveal">
-      <span class="en">02  The Purpose</span>
+      <span class="en">The Purpose</span>
       <h2>海の自然を、取り戻す</h2>
       <p>失われつつある海の自然環境を取り戻す。生物多様性を回復させ、人と自然が共生する持続可能な地域をつくる。それが漁業の再生、地域経済の活性化、環境教育、そしてまちの誇りへとつながっていく。</p>
     </div>
@@ -336,7 +337,7 @@
   <!-- 目指すもの -->
   <section>
     <div class="wrap reveal" style="text-align:center;">
-      <span class="en">03  The Vision</span>
+      <span class="en">The Vision</span>
       <h2>自然・人・経済が、好循環するまちへ</h2>
       <p style="max-width:760px;margin:0 auto 10px;">目指すのは「元に戻す」ことではない。失われた海を回復させ、かつてを超える豊かな海へと<b>増やしていくこと</b>。それが「ネイチャーポジティブなまち笠岡」。</p>
     </div>
@@ -364,7 +365,7 @@
     <div class="bg-overlay"></div>
     <div class="bg-content">
       <div class="wrap reveal">
-        <span class="en" style="color:#7ecece;">04  The Plan</span>
+        <span class="en" style="color:#7ecece;">The Plan</span>
         <h2>カブトガニ環境応援団</h2>
         <p>行政・企業・市民・研究機関が協働する。「カブトガニ環境応援団」を通じて寄附・協賛を集め、その資金を海洋環境改善事業へ投じる。研究機関が効果を科学的に検証し、成果を発信する。</p>
 
@@ -375,6 +376,11 @@
             <div class="cc"><span class="cc-no">Ⅲ</span><span class="cc-ttl">市民・団体</span><span class="cc-desc">参加・普及啓発</span></div>
             <div class="cc"><span class="cc-no">Ⅳ</span><span class="cc-ttl">研究機関</span><span class="cc-desc">科学的検証・成果の発信</span></div>
           </div>
+
+          <div class="join-wrap">
+            <a class="join-btn" href="https://www.city.kasaoka.okayama.jp/soshiki/18/73846.html"
+               target="_blank" rel="noopener">カブトガニ環境応援団に参加する<span class="arw">→</span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -383,7 +389,7 @@
   <!-- 具体 -->
   <section>
     <div class="wrap reveal">
-      <span class="en">05  The Action</span>
+      <span class="en">The Action</span>
       <h2>私たちのアクション</h2>
       <p>調べ、守り、再生し、その拠点をつくる。ひとつひとつが次の一手につながり、めぐり続ける取り組みとして海を育てていく。</p>
 
@@ -445,8 +451,6 @@
             <circle cx="440" cy="752" r="3" fill="#0f4c53" stroke="none" fill-opacity=".45"/>
           </g>
         </svg>
-      </div>
-
 
         <svg class="cycle-svg-m" viewBox="0 0 600 830" role="img"
              aria-label="目盛りを刻んだ円盤上を走査線がめぐり、調べる・守る・再生する・拠点をつくるの四工程が配置された図">
@@ -500,6 +504,7 @@
           <text class="m-dsc" x="100" y="446" text-anchor="middle">白石島</text>
           <text class="m-dsc" x="100" y="468" text-anchor="middle">研究フィールド</text>
         </svg>
+      </div>
 
       <div class="lead-down">
         <p>その拠点が、白石島。</p>
@@ -513,7 +518,7 @@
       <img class="bg-img" src="shiraishi.jpg" alt="白石島">
       <div class="bg-overlay"></div>
       <div class="field-hero-txt">
-        <span class="en">06  Research Field</span>
+        <span class="en">Research Field</span>
         <h2>白石島研究フィールド構想</h2>
         <p class="sub">
           笠岡諸島・白石島。この島にはすでに、海洋研究を実践する環境が整っている。
@@ -546,11 +551,11 @@
     <img src="logo.png" alt="ネイチャーポジティブ笠岡"
       style="height:60px;margin-bottom:20px;opacity:.85;filter:brightness(10);"><br>
     カブトガニ未来創成プロジェクト　／　岡山県 笠岡市<br>
-    <span style="opacity:.6;">漁獲量の注意書き</span>
+    <span style="opacity:.6;">漁獲量・漁獲高は暦年集計。出典：農林水産省「海面漁業生産統計調査」。<br>
+    2019年（H31）以降は聞き取り及び漁獲量調査により笠岡市が集計。</span>
   </footer>
 
 <script>
-/* スクロール出現 ＋ 数字カウントアップ */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -575,7 +580,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.25 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* グラフ描画 */
 function drawChart() {
   const ctx = document.getElementById('suiageChart').getContext('2d');
   const gradA = ctx.createLinearGradient(0, 0, 0, 320);
@@ -592,17 +596,17 @@ function drawChart() {
                'H29','H30','R1','R2','R3','R4','R5','R6'],
       datasets: [
         {
-          label: '水揚げ金額（万円）',
-          data: [74400,70000,65000,62000,60000,57000,54000,52000,50000,47000,
-                 45000,43000,40000,38000,35000,32000,29000,27100],
+          label: '水揚げ金額（百万円）',
+          data: [744,762,614,547,581,581,538,499,545,498,
+                 532,484,491,368,313,367,287,271],
           borderColor: '#a8c6c2', backgroundColor: gradA,
           borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#a8c6c2',
           tension: 0.4, fill: true, yAxisID: 'y',
         },
         {
           label: '漁獲量（トン）',
-          data: [1207,1150,1080,1020,980,940,900,860,820,780,
-                 740,700,660,620,580,540,490,448],
+          data: [1207,1115,948,836,827,770,685,723,702,643,
+                 575,539,503,503,493,358,392,448],
           borderColor: '#e8b4a0', backgroundColor: gradB,
           borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#e8b4a0',
           tension: 0.4, fill: true, yAxisID: 'y2',
@@ -625,7 +629,7 @@ function drawChart() {
         x: { ticks: { color: '#9bbdb9', font:{size:12} }, grid: { color: 'rgba(255,255,255,.07)' } },
         y: {
           position: 'left',
-          title: { display: true, text: '水揚げ金額（万円）', color: '#a8c6c2', font:{size:12} },
+          title: { display: true, text: '水揚げ金額（百万円）', color: '#a8c6c2', font:{size:12} },
           ticks: { color: '#a8c6c2', font:{size:11} },
           grid: { color: 'rgba(255,255,255,.07)' }
         },
